@@ -36,8 +36,8 @@ namespace CashBack.Repositories
                     item.VendaID = venda.VendaId;
                     
                     // Busca valor do CashBack
-                    decimal valorPercentualCash = _cashBackRepository.ObterCashback(item.Produto.Marca);
-                    item.ValorCashBack = decimal.Round(item.Produto.PrecoVenda * valorPercentualCash, 2);
+                    double valorPercentualCash = _cashBackRepository.ObterCashback(item.Produto.Marca);
+                    item.ValorCashBack = item.Produto.PrecoVenda * valorPercentualCash;
                     item.Produto = _catalogo.ObterCervejaPorId(item.Produto.ProdutoId);
 
                     _context.ItensVendas.Add(item);

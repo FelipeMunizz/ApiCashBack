@@ -2,6 +2,6 @@
 {
     public interface ICashBackPercentualService
     {
-        decimal ObterCashback(string marca);
+        double ObterCashback(string marca);
     }
 }

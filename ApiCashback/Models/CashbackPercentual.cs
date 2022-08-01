@@ -7,12 +7,12 @@ namespace ApiCashback.Models
         [Key]
         public int CashbackId { get; set; }
         public string? Marca { get; set; }
-        public decimal Domingo { get; set; }
-        public decimal Segunda { get; set; }
-        public decimal Terca { get; set; }
-        public decimal Quarta { get; set; }
-        public decimal Quinta { get; set; }
-        public decimal Sexta { get; set; }
-        public decimal Sabado { get; set; }
+        public double Domingo { get; set; }
+        public double Segunda { get; set; }
+        public double Terca { get; set; }
+        public double Quarta { get; set; }
+        public double Quinta { get; set; }
+        public double Sexta { get; set; }
+        public double Sabado { get; set; }
     }
 }

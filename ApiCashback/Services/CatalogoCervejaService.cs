@@ -12,12 +12,12 @@ namespace CashBack.Services
         {
             _catalogoRepository = catalogo;
         }
-        public IEnumerable<Cerveja> ListarTodosPorMarca(string genero, int offset, int limit)
+        public IEnumerable<Produto> ListarTodosPorMarca(string genero, int offset, int limit)
         {
             return _catalogoRepository.ListarTodosPorMarca(genero, offset, limit);
         }
 
-        public Cerveja ObterCervejaPorId(int id)
+        public Produto ObterCervejaPorId(int id)
         {
             return _catalogoRepository.ObterCervejaPorId(id);
         }

@@ -4,7 +4,7 @@ namespace ApiCashback.Services.Interfaces
 {
     public interface ICatalogoCervejaService
     {
-        IEnumerable<Cerveja> ListarTodosPorMarca(string marca, int offset, int limit);
-        Cerveja ObterCervejaPorId(int id);
+        IEnumerable<Produto> ListarTodosPorMarca(string marca, int offset, int limit);
+        Produto ObterCervejaPorId(int id);
     }
 }

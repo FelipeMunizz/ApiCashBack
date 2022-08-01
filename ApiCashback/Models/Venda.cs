@@ -7,8 +7,8 @@ namespace ApiCashback.Models
         [Key]
         public int VendaId { get; set; }
         public DateTime DataVenda { get; set; }
-        public decimal ValorTotalItens { get; set; }
-        public decimal CashBackTotalVenda { get; set; }
+        public double ValorTotalItens { get; set; }
+        public double CashBackTotalVenda { get; set; }
         public virtual ICollection<ItemVenda>? Itens { get; set; }
     }
 }

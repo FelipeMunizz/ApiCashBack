@@ -12,9 +12,9 @@ namespace CashBack.Repositories
             _context = context;
         }
 
-        public decimal ObterCashback(string marca)
+        public double ObterCashback(string marca)
         {
-            decimal valor = 0;
+            double valor = 0;
             int diaDaSemana = (int)DateTime.Now.DayOfWeek;
             if (!string.IsNullOrWhiteSpace(marca))
             {
@@ -51,9 +51,9 @@ namespace CashBack.Repositories
             return valor;
         }
 
-        public decimal ObterCashback(string marca, DateTime dataVenda)
+        public double ObterCashback(string marca, DateTime dataVenda)
         {
-            decimal valor = 0;
+            double valor = 0;
             int diaDaSemana = (int)dataVenda.DayOfWeek;
             if (!string.IsNullOrWhiteSpace(marca))
             {

@@ -7,7 +7,7 @@ namespace CashBack.Repositories.Interfaces
 {
     public interface ICashBackPercentualRepository
     {
-        decimal ObterCashback(string marca);
-        decimal ObterCashback(string marca, DateTime dataVenda);
+        double ObterCashback(string marca);
+        double ObterCashback(string marca, DateTime dataVenda);
     }
 }

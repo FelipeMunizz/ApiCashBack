@@ -12,7 +12,7 @@ namespace CashBack.Services
             _cashBackPercentualRepository = cashBackPercentualRepository;
         }
 
-        public decimal ObterCashback(string marca)
+        public double ObterCashback(string marca)
         {
             return _cashBackPercentualRepository.ObterCashback(marca);
         }
