@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<Venda> Vendas { get; set; }
     public DbSet<ItemVenda> ItensVendas { get; set; }
 
+    //HasData aplicado ao migration
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Produto>().HasData(
