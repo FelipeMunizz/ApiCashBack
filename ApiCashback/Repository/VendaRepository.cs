@@ -1,17 +1,17 @@
 ﻿using ApiCashback.Data;
 using ApiCashback.Models;
-using ApiCashback.Repository.Interfaces;
+using CashBack.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiCashback.Repository
+namespace CashBack.Repositories
 {
     public class VendaRepository : IVendaRepository
     {
         private AppDbContext _context;
-        private ICashbackPercentualRepository _cashBackRepository;
+        private ICashBackPercentualRepository _cashBackRepository;
         private ICatalogoCervejaRepository _catalogo;
 
-        public VendaRepository(AppDbContext contexto, ICashbackPercentualRepository cashBackRepository, ICatalogoCervejaRepository catalogo)
+        public VendaRepository(AppDbContext contexto, ICashBackPercentualRepository cashBackRepository, ICatalogoCervejaRepository catalogo)
         {
             _context = contexto;
             _cashBackRepository = cashBackRepository;
@@ -28,17 +28,17 @@ namespace ApiCashback.Repository
                 venda.DataVenda = DateTime.Now;
 
                 _context.Vendas.Add(venda);
-
-
+                
+                
 
                 foreach (var item in venda.Itens)
                 {
-                    item.VendaID = venda.VendaID;
-
+                    item.VendaID = venda.VendaId;
+                    
                     // Busca valor do CashBack
-                    decimal valorPercentualCash = _cashBackRepository.ObterCashBack(item.Produto.Nome);
+                    decimal valorPercentualCash = _cashBackRepository.ObterCashback(item.Produto.Marca);
                     item.ValorCashBack = decimal.Round(item.Produto.PrecoVenda * valorPercentualCash, 2);
-                    item.Produto = _catalogo.GetCervejaPorID(item.Produto.ProdutoID);
+                    item.Produto = _catalogo.ObterCervejaPorId(item.Produto.ProdutoId);
 
                     _context.ItensVendas.Add(item);
                     _context.Entry(item.Produto).State = EntityState.Unchanged;
@@ -51,7 +51,7 @@ namespace ApiCashback.Repository
                     _context.SaveChanges();
                 }
 
-
+                
             }
 
 
@@ -61,16 +61,16 @@ namespace ApiCashback.Repository
         public IEnumerable<Venda> ObterTodasVendas(DateTime dataInicial, DateTime dataFinal, int offset, int limit)
         {
             IEnumerable<Venda> vendas = _context.Vendas
-                .Where(x => x.DataVenda.Date >= dataInicial.Date && x.DataVenda.Date <= dataFinal.Date)
+                .Where(x=>x.DataVenda.Date >= dataInicial.Date && x.DataVenda.Date <= dataFinal.Date)
                 .Skip(offset)
                 .Take(limit)
-                .OrderByDescending(x => x.DataVenda).ToList();
+                .OrderByDescending(x=>x.DataVenda).ToList();                        
             return vendas;
         }
 
         public Venda ObterVendaPorId(int id)
         {
-            return _context.Vendas.Where(x => x.VendaID.Equals(id)).FirstOrDefault();
+            return _context.Vendas.Where(x => x.VendaId.Equals(id)).FirstOrDefault();
         }
 
         private Resultado DadosValidos(Venda venda)

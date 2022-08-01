@@ -1,8 +1,8 @@
 ﻿using ApiCashback.Models;
 
-namespace CashBack.Repositories.Interfaces
+namespace CashBack.Services.Interfaces
 {
-    public interface IVendaRepository
+    public interface IVendaService
     {
         Venda ObterVendaPorId(int id);
         IEnumerable<Venda> ObterTodasVendas(DateTime dataInicial, DateTime dataFinal, int offset, int limit);

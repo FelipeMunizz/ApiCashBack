@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ApiCashback.Models
 {
     public class ItemVenda
     {
-        public int ID { get; set; }
+        [Key]
+        public int Id { get; set; }
         public virtual Cerveja? Produto { get; set; }
         public decimal ValorCashBack { get; set; }
 

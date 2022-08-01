@@ -1,28 +1,28 @@
 ﻿using ApiCashback.Data;
-using ApiCashback.Repository.Interfaces;
+using CashBack.Repositories.Interfaces;
 
-namespace ApiCashback.Repository
+namespace CashBack.Repositories
 {
-    public class CashbackPercentualRepository : ICashbackPercentualRepository
+    public class CashBackPercentualRepository : ICashBackPercentualRepository
     {
         private AppDbContext _context;
 
-        public CashbackPercentualRepository(AppDbContext context)
+        public CashBackPercentualRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public decimal ObterCashBack(string marca)
+        public decimal ObterCashback(string marca)
         {
             decimal valor = 0;
             int diaDaSemana = (int)DateTime.Now.DayOfWeek;
             if (!string.IsNullOrWhiteSpace(marca))
             {
                 var cash = _context.CashbackPercentuais.Where(c => c.Marca.Equals(marca)).FirstOrDefault();
-
+                
                 if (cash != null)
                 {
-                    switch (diaDaSemana)
+                    switch(diaDaSemana)
                     {
                         case 0:
                             valor = cash.Domingo;
@@ -44,14 +44,14 @@ namespace ApiCashback.Repository
                             break;
                         case 6:
                             valor = cash.Sabado;
-                            break;
+                            break;                        
                     }
                 }
             }
             return valor;
         }
 
-        public decimal ObterCashBack(string marca, DateTime dataVenda)
+        public decimal ObterCashback(string marca, DateTime dataVenda)
         {
             decimal valor = 0;
             int diaDaSemana = (int)dataVenda.DayOfWeek;
@@ -83,7 +83,7 @@ namespace ApiCashback.Repository
                             break;
                         case 6:
                             valor = cash.Sabado;
-                            break;
+                            break;                        
                     }
                 }
             }
@@ -91,4 +91,3 @@ namespace ApiCashback.Repository
         }
     }
 }
-

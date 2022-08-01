@@ -1,8 +1,11 @@
-﻿namespace ApiCashback.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ApiCashback.Models
 {
     public class CashbackPercentual
     {
-        public int CashbackID { get; set; }
+        [Key]
+        public int CashbackId { get; set; }
         public string? Marca { get; set; }
         public decimal Domingo { get; set; }
         public decimal Segunda { get; set; }

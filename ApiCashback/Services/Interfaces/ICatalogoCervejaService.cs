@@ -1,8 +1,8 @@
 ﻿using ApiCashback.Models;
 
-namespace CashBack.Repositories.Interfaces
+namespace ApiCashback.Services.Interfaces
 {
-    public interface ICatalogoCervejaRepository
+    public interface ICatalogoCervejaService
     {
         IEnumerable<Cerveja> ListarTodosPorMarca(string marca, int offset, int limit);
         Cerveja ObterCervejaPorId(int id);

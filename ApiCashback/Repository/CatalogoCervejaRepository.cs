@@ -1,8 +1,8 @@
 ﻿using ApiCashback.Data;
 using ApiCashback.Models;
-using ApiCashback.Repository.Interfaces;
+using CashBack.Repositories.Interfaces;
 
-namespace ApiCashback.Repository
+namespace CashBack.Repositories
 {
     public class CatalogoCervejaRepository : ICatalogoCervejaRepository
     {
@@ -13,14 +13,14 @@ namespace ApiCashback.Repository
             _context = context;
         }
 
-        public IEnumerable<Cerveja> GetTodosPorNome(string nome, int offset, int limit)
+        public IEnumerable<Cerveja> ListarTodosPorMarca(string marca, int offset, int limit)
         {
-            return _context.CatalogoCervejas.Where(x => x.Nome.Equals(nome)).OrderBy(o => o.Nome).Skip(offset).Take(limit).ToList();
+            return _context.CatalogoCervejas.Where(x => x.Marca.Equals(marca)).OrderBy(o => o.Marca).Skip(offset).Take(limit).ToList();
         }
 
-        public Cerveja GetCervejaPorID(int id)
+        public Cerveja ObterCervejaPorId(int id)
         {
-            return _context.CatalogoCervejas.Where(x => x.ProdutoID.Equals(id)).FirstOrDefault();
+            return _context.CatalogoCervejas.Where(x => x.ProdutoId.Equals(id)).FirstOrDefault();
         }
     }
 }
